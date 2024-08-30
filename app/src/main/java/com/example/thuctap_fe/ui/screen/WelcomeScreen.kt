@@ -2,7 +2,6 @@ package com.example.thuctap_fe.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,8 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import com.example.thuctap_fe.R
-//import androidx.navigation.NavController
-//import fpoly.giapdqph34273.asm_ph34273_kot104.navigation.Screen
+import com.example.thuctap_fe.navigation.Screen
 
 @Composable
 fun WelcomeScreen(navController: NavController) {
@@ -101,7 +99,7 @@ fun manHinhChao(navController: NavController? = null) {
             ) {
                 Button(
                     onClick = {
-
+                        navController?.navigate(Screen.Main.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         Color("#242424".toColorInt())

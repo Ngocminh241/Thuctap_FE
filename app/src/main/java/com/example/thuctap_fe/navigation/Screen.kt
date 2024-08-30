@@ -1,8 +1,9 @@
 package com.example.thuctap_fe.navigation
 
-import android.media.MediaRouter
-
-enum class Screen(val router: String) {
-    Welcome("Welcome")
+enum class Screen(val route: String) {
+    Welcome("Welcome"),
+    Main("Main"),
+    Home("Home"),
+    Option("Option"),
 
 }
