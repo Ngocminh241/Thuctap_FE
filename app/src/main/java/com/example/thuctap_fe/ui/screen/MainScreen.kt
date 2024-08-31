@@ -1,13 +1,11 @@
 package com.example.thuctap_fe.ui.screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -162,41 +160,15 @@ fun MainScreen() {
                 Home()
             }
             composable(Screen.Option.route) {
-                Favourite()
+                OptionScreen()
             }
         }
     }
 }
 
-@Composable
-fun Favourite() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Yellow)
-    ) {
-        Text(
-            text = "Favourite",
-            fontSize = 26.sp,
-            color = Color.Black
-        )
-    }
-}
 
-@Composable
-fun Home() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Red)
-    ) {
-        Text(
-            text = "Home",
-            fontSize = 26.sp,
-            color = Color.Black
-        )
-    }
-}
+
+
 
 @Composable
 fun Dot() {
