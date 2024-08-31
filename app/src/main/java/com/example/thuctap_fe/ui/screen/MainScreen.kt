@@ -1,9 +1,14 @@
 package com.example.thuctap_fe.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -44,6 +49,29 @@ fun MainScreen() {
     val navController = rememberNavController()
 
     Scaffold(
+        topBar = {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp)
+                    .padding(start = 15.dp, end = 15.dp, top = 15.dp)
+            ) {
+                Text(
+                    text = "Chào Giáp",
+                    fontSize = 26.sp,
+                    fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                    color = Color.Black
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.avatar),
+                    contentDescription = "",
+                    modifier = Modifier.size(35.dp)
+                )
+            }
+        },
         bottomBar = {
             Box(
                 contentAlignment = Alignment.Center
@@ -142,7 +170,11 @@ fun MainScreen() {
 
 @Composable
 fun Favourite() {
-    Box {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Yellow)
+    ) {
         Text(
             text = "Favourite",
             fontSize = 26.sp,
@@ -153,7 +185,11 @@ fun Favourite() {
 
 @Composable
 fun Home() {
-    Box {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Red)
+    ) {
         Text(
             text = "Home",
             fontSize = 26.sp,
