@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -35,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -42,7 +46,7 @@ import com.example.thuctap_fe.R
 import com.example.thuctap_fe.navigation.Screen
 
 @Composable
-fun MainScreen() {
+fun MainScreen(navCtrl: NavController = rememberNavController()) {
     var selected by remember { mutableStateOf(Screen.Home.route) }
     val navController = rememberNavController()
 
@@ -54,7 +58,8 @@ fun MainScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(100.dp)
-                    .padding(start = 15.dp, end = 15.dp, top = 15.dp)
+                    .padding(start = 15.dp, end = 15.dp)
+                    .padding(WindowInsets.statusBars.asPaddingValues())
             ) {
                 Text(
                     text = "Chào Giáp",
@@ -63,11 +68,15 @@ fun MainScreen() {
                     color = Color.Black
                 )
 
-                Image(
-                    painter = painterResource(id = R.drawable.avatar),
-                    contentDescription = "",
-                    modifier = Modifier.size(35.dp)
-                )
+                IconButton(onClick = {
+                    navCtrl.navigate(Screen.Profile.route)
+                }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.avatar),
+                        contentDescription = "",
+                        modifier = Modifier.size(35.dp)
+                    )
+                }
             }
         },
         bottomBar = {
