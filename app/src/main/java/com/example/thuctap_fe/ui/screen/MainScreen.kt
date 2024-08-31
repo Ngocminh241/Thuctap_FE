@@ -1,6 +1,7 @@
 package com.example.thuctap_fe.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,8 +31,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,6 +52,7 @@ import com.example.thuctap_fe.navigation.Screen
 fun MainScreen(navCtrl: NavController = rememberNavController()) {
     var selected by remember { mutableStateOf(Screen.Home.route) }
     val navController = rememberNavController()
+    var name by remember { mutableStateOf("GiapDQ") }
 
     Scaffold(
         topBar = {
@@ -62,7 +66,7 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
                     .padding(WindowInsets.statusBars.asPaddingValues())
             ) {
                 Text(
-                    text = "Chào Giáp",
+                    text = "Chào " + if (name.isNotEmpty()) name else "bạn",
                     fontSize = 26.sp,
                     fontFamily = FontFamily(Font(R.font.nunito_bold)),
                     color = Color.Black
@@ -85,9 +89,15 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
             ) {
 
                 BottomAppBar(
-                    containerColor = Color("#FDF6DF".toColorInt()),
+//                    containerColor = Color("#FDF6DF".toColorInt()),
+                    containerColor = Color.Transparent,
                     modifier = Modifier
                         .height(120.dp)
+                        .background(
+                            brush = Brush.horizontalGradient(
+                                listOf(Color("#FDF6DF".toColorInt()), Color("#FF9382".toColorInt()))
+                            )
+                        )
                 ) {
                     // home
                     IconButton(
@@ -108,8 +118,16 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
                                 text = "Trang chủ",
                                 fontFamily = FontFamily(Font(R.font.nunito_bold)),
                                 fontSize = 20.sp,
-                                color = if (selected == Screen.Home.route) Color("#FDC890".toColorInt()) else Color(
-                                    "#DDDDDD".toColorInt()
+                                style = TextStyle(
+                                    brush = Brush.horizontalGradient(
+                                        if (selected == Screen.Home.route) listOf(
+                                            Color("#FDC890".toColorInt()),
+                                            Color("#FF9382".toColorInt())
+                                        ) else listOf(
+                                            Color.White,
+                                            Color.White
+                                        )
+                                    )
                                 )
                             )
                             if (selected == Screen.Home.route) Dot()
@@ -136,25 +154,28 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
                                 text = "Tùy chọn",
                                 fontSize = 20.sp,
                                 fontFamily = FontFamily(Font(R.font.nunito_bold)),
-                                color = if (selected == Screen.Option.route) Color("#FDC890".toColorInt()) else Color(
-                                    "#DDDDDD".toColorInt()
-                                )
+                                color = if (selected == Screen.Option.route) Color("#FF9382".toColorInt()) else Color.White
                             )
                             if (selected == Screen.Option.route) Dot()
                         }
                     }
                 }
-                FloatingActionButton(
+                IconButton(
                     onClick = {},
-                    containerColor = Color("#FDC890".toColorInt()),
                     modifier = Modifier
-                        .offset(y = (-60).dp),
-                    shape = CircleShape
+                        .offset(y = (-60).dp)
+                        .background(
+                            brush = Brush.horizontalGradient(
+                                listOf(Color("#FDC890".toColorInt()), Color("#FF9382".toColorInt()))
+                            ),
+                            shape = CircleShape
+                        ),
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = null,
-                        tint = Color.White
+                        tint = Color.White,
+                        modifier = Modifier.size(30.dp)
                     )
                 }
             }
@@ -174,9 +195,6 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
         }
     }
 }
-
-
-
 
 
 @Composable
