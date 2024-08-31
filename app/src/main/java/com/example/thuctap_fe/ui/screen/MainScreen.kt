@@ -89,7 +89,6 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
             ) {
 
                 BottomAppBar(
-//                    containerColor = Color("#FDF6DF".toColorInt()),
                     containerColor = Color.Transparent,
                     modifier = Modifier
                         .height(120.dp)
