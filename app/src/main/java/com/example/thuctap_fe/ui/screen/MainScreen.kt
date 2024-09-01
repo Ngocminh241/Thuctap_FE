@@ -50,7 +50,7 @@ import com.example.thuctap_fe.navigation.Screen
 
 @Composable
 fun MainScreen(navCtrl: NavController = rememberNavController()) {
-    var selected by remember { mutableStateOf(Screen.Home.route) }
+    var selected by remember { mutableStateOf(Screen.Option.route) }
     val navController = rememberNavController()
     var name by remember { mutableStateOf("GiapDQ") }
 
@@ -134,7 +134,7 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
                     }
 
 
-                    // favorite
+                    // option
                     IconButton(
                         onClick = {
                             selected = Screen.Option.route
@@ -182,7 +182,7 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
     ) {
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
+            startDestination = Screen.Option.route,
             modifier = Modifier.padding(it)
         ) {
             composable(Screen.Home.route) {
