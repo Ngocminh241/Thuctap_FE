@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -43,7 +47,7 @@ fun WelcomeScreen(navController: NavController) {
     preview(navController)
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun preview(navController: NavController? = null) {
     manHinhChao(navController)
@@ -55,6 +59,8 @@ fun manHinhChao(navController: NavController? = null) {
 
     Box(
         modifier = Modifier.fillMaxSize()
+            .navigationBarsPadding()
+
 
     ) {
         Image(
@@ -116,7 +122,7 @@ fun manHinhChao(navController: NavController? = null) {
             ) {
                 Button(
                     onClick = {
-                        navController?.navigate(com.example.thuctap_fe.navigation.Screen.RegisterScreen.router)
+//                        navController?.navigate(com.example.thuctap_fe.navigation.Screen.RegisterScreen.router)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Transparent // Set container color to transparent
@@ -142,8 +148,7 @@ fun manHinhChao(navController: NavController? = null) {
 
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 6.dp), // Padding from the bottom of the screen
+                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly, // Distributes space evenly between buttons
                     verticalAlignment = Alignment.CenterVertically
 
