@@ -3,13 +3,17 @@ package com.example.thuctap_fe.ui.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -61,36 +65,49 @@ fun Home() {
 fun ItemGrid(model: Grade) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.padding(bottom = 20.dp)
+        modifier = Modifier.fillMaxSize()
     ) {
-        Image(
-            painter = painterResource(id = model.gradeBackground),
-            contentDescription = null,
-            modifier = Modifier.size(150.dp)
-        )
-
-        Image(
-            painter = painterResource(id = model.gradeIcon),
-            contentDescription = "",
-            modifier = Modifier
-                .size(40.dp)
-                .offset(
-                    x = 50.dp,
-                    y = (-50).dp
-                )
-        )
-
-        Text(
-            text = model.gradeName,
-            modifier = Modifier.offset(
-                y = 40.dp
+        Card(
+            onClick = {},
+            colors = CardDefaults.cardColors(
+                containerColor = Color.Transparent,
             ),
-            style = TextStyle(
-                color = Color.White,
-                fontSize = 30.sp,
-                fontFamily = FontFamily(Font(R.font.nunito_bold))
-            )
-        )
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Box(
+                contentAlignment = Alignment.Center,
+//                modifier = Modifier.padding(bottom = 20.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = model.gradeBackground),
+                    contentDescription = null,
+                    modifier = Modifier.size(150.dp)
+                )
+
+                Image(
+                    painter = painterResource(id = model.gradeIcon),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(40.dp)
+                        .offset(
+                            x = 50.dp,
+                            y = (-50).dp
+                        )
+                )
+
+                Text(
+                    text = model.gradeName,
+                    modifier = Modifier.offset(
+                        y = 40.dp
+                    ),
+                    style = TextStyle(
+                        color = Color.White,
+                        fontSize = 30.sp,
+                        fontFamily = FontFamily(Font(R.font.nunito_bold))
+                    )
+                )
+            }
+        }
     }
 }
 
