@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.thuctap_fe.navigation.ScreenNavigation
-import com.example.thuctap_fe.ui.screen.RegisterScreen
 import com.example.thuctap_fe.ui.theme.Thuctap_FETheme
 
 class MainActivity : ComponentActivity() {
