@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.thuctap_fe.ui.screen.RegisterScreen
 import com.example.thuctap_fe.ui.screen.WelcomeScreen
 
 @Composable
@@ -14,6 +15,8 @@ fun ScreenNavigation() {
         startDestination = Screen.Welcome.router,
     ) {
         composable(Screen.Welcome.router) { WelcomeScreen(navController) }
+        composable(Screen.RegisterScreen.router) { RegisterScreen(navController) }
+
 
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,9 +16,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode.Companion.Screen
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
@@ -67,23 +71,34 @@ fun manHinhChao(navController: NavController? = null) {
                 .padding(
                     start = 40.dp,
                     end = 40.dp,
-                    top = 250.dp,
-                    bottom = 16.dp
+                    top = 180.dp,
+                    bottom = 25.dp
                 )
         ) {
 
 
             Text(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                text = "Learning with children",
+                text = "Learning with",
                 fontSize = 40.sp,
-                color = Color("#303030".toColorInt()),
-
-                fontFamily = FontFamily(Font(R.font.nunito_bold))
+                color = Color.White,
+                fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                modifier = Modifier
+                    .padding(bottom = 1.dp) // Padding between title and input fields
+                    .align(Alignment.CenterHorizontally) // Center text horizontally
+            )
+            Text(
+                text = "children",
+                fontSize = 40.sp,
+                color = Color.White,
+                fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                modifier = Modifier
+                    .padding(bottom = 16.dp) // Padding between title and input fields
+                    .align(Alignment.CenterHorizontally) // Center text horizontally
             )
 
             Spacer(modifier = Modifier.height(20.dp))
-            val image: Painter = painterResource(id = R.drawable.nguoidocsach) // replace with your image resource
+            val image: Painter =
+                painterResource(id = R.drawable.nguoidocsach) // replace with your image resource
             Image(
                 painter = image,
                 contentDescription = "Image Description",
@@ -101,25 +116,72 @@ fun manHinhChao(navController: NavController? = null) {
             ) {
                 Button(
                     onClick = {
-
+                        navController?.navigate(com.example.thuctap_fe.navigation.Screen.RegisterScreen.router)
                     },
                     colors = ButtonDefaults.buttonColors(
-                        Color("#242424".toColorInt())
+                        containerColor = Color.Transparent // Set container color to transparent
                     ),
                     modifier = Modifier
+                        .height(50.dp)
                         .background(
-                            Color("#242424".toColorInt()),
-                            shape = RoundedCornerShape(4.dp)
+                            brush = Brush.horizontalGradient(
+                                listOf(Color("#FDC890".toColorInt()), Color("#FF9382".toColorInt()))
+                            ),
+                            shape = RoundedCornerShape(30.dp) // Add shape if needed
                         )
                 ) {
                     Text(
-                        text = "Get Started",
-                        fontWeight = FontWeight(600),
-                        fontSize = 18.sp,
-                        fontFamily = FontFamily(Font(R.font.nunito_variable_fontwght)),
+                        text = "Bat Dau",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily(Font(R.font.nunito_bold))
                     )
+                }
+                Spacer(modifier = Modifier.weight(1f)) // Pushes the following column to the bottom
+
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 6.dp), // Padding from the bottom of the screen
+                    horizontalArrangement = Arrangement.SpaceEvenly, // Distributes space evenly between buttons
+                    verticalAlignment = Alignment.CenterVertically
+
+                )  {
+                    Row(
+
+                    ) {
+
+                    TextButton(
+                        onClick = {
+                            // Handle Đăng ký click
+
+                        },
+                        modifier = Modifier.padding(end = 4.dp)// Reduce padding between buttons
+                    ) {
+                        Text(
+                            text = "Đăng ký",
+                            fontSize = 20.sp,
+                            color = Color.White, // Customize the color
+                            fontFamily = FontFamily(Font(R.font.nunito_variable_fontwght))
+                        )
+                    }
+                    TextButton(
+                        onClick = {
+                            // Handle Đăng nhập click
+                        },
+                                modifier = Modifier.padding(start = 4.dp)
+                    ) {
+                        Text(
+                            text = "Đăng nhập",
+                            fontSize = 20.sp,
+                            color = Color.White, // Customize the color
+                            fontFamily = FontFamily(Font(R.font.nunito_variable_fontwght))
+                        )
+                    }
                 }
             }
         }
     }
+}
 }
