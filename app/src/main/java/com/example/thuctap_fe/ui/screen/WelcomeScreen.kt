@@ -7,15 +7,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -24,7 +21,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
@@ -32,13 +28,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import com.example.thuctap_fe.R
+import com.example.thuctap_fe.navigation.Screen
+
 //import androidx.navigation.NavController
 //import fpoly.giapdqph34273.asm_ph34273_kot104.navigation.Screen
 
@@ -122,7 +119,7 @@ fun manHinhChao(navController: NavController? = null) {
             ) {
                 Button(
                     onClick = {
-//                        navController?.navigate(com.example.thuctap_fe.navigation.Screen.RegisterScreen.router)
+                        navController?.navigate(Screen.Main.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Transparent // Set container color to transparent
@@ -137,7 +134,7 @@ fun manHinhChao(navController: NavController? = null) {
                         )
                 ) {
                     Text(
-                        text = "Bat Dau",
+                        text = "Bắt đầu",
                         color = Color.White,
                         fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.nunito_bold))

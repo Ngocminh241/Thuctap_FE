@@ -24,11 +24,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.thuctap_fe.R
 import com.example.thuctap_fe.model.Grade
+import com.example.thuctap_fe.navigation.Screen
 
 @Composable
-fun Home() {
+fun Home(navController: NavController? = null) {
     val listProduct = listOf(
         Grade("1", "Mầm non", R.drawable.mam_non_icon, R.drawable.anh_mau_giao),
         Grade("2", "Lớp 1", R.drawable.lop_1_icon, R.drawable.anh_lop_1),
@@ -53,20 +55,22 @@ fun Home() {
 
         ) {
             items(listProduct) { model ->
-                ItemGrid(model)
+                ItemGrid(model) {
+                    navController?.navigate(Screen.Subject.route)
+                }
             }
         }
     }
 }
 
 @Composable
-fun ItemGrid(model: Grade) {
+fun ItemGrid(model: Grade, onClick: () -> Unit = {}) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
         Card(
-            onClick = {},
+            onClick = onClick,
             colors = CardDefaults.cardColors(
                 containerColor = Color.Transparent,
             ),
@@ -74,7 +78,6 @@ fun ItemGrid(model: Grade) {
         ) {
             Box(
                 contentAlignment = Alignment.Center,
-//                modifier = Modifier.padding(bottom = 20.dp)
             ) {
                 Image(
                     painter = painterResource(id = model.gradeBackground),

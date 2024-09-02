@@ -186,7 +186,7 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
             modifier = Modifier.padding(it)
         ) {
             composable(Screen.Home.route) {
-                Home()
+                Home(navCtrl)
             }
             composable(Screen.Option.route) {
                 OptionScreen()
