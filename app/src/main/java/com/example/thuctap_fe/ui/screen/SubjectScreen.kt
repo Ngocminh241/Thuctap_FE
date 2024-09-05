@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.thuctap_fe.R
+import com.example.thuctap_fe.navigation.Screen
 
 @Composable
 fun SubjectScreen(navController: NavController? = null) {
@@ -107,7 +108,9 @@ fun SubjectScreen(navController: NavController? = null) {
                     itemsIndexed(listSubject) { index, subject ->
                         val imageIndex = index % listImage.size
                         Card(
-                            onClick = {},
+                            onClick = {
+                                navController?.navigate(Screen.Play.route)
+                            },
                             colors = CardDefaults.cardColors(
                                 containerColor = Color.Transparent,
                             ),
