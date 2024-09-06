@@ -24,5 +24,9 @@ fun ScreenNavigation() {
         composable(Screen.Subject.route) { SubjectScreen(navController) }
         composable(Screen.Home.route) { Home(navController) }
         composable(Screen.Play.route) { PlayScreen(navController) }
+        composable(Screen.Register.route) { RegisterScreen(navController) }
+        composable(Screen.Login.route) { LoginScreen(navController) }
+        composable(Screen.ChangePassword.route) { ChangePasswordScreen(navController) }
+
     }
 }
