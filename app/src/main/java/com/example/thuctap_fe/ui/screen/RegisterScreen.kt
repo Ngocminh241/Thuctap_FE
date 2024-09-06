@@ -53,9 +53,12 @@ import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.thuctap_fe.R
+import com.example.thuctap_fe.navigation.Screen
 
 @Composable
 fun RegisterScreen(navController: NavController) {
+    var isClicked by remember { mutableStateOf(false) } // Biến trạng thái để theo dõi khi nhấn vào "Đăng Ký"
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -104,7 +107,9 @@ fun RegisterScreen(navController: NavController) {
             InputRowPass(title = "Nhập Mật Khẩu")
             InputRowPass(title = "Nhập Lại Mật Khẩu")
             Button(
-                onClick = {},
+                onClick = {
+
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent // Set container color to transparent
                 ),
@@ -135,6 +140,12 @@ fun RegisterScreen(navController: NavController) {
 
                 )
                 Text(
+                    modifier = Modifier
+                        .wrapContentSize() // Giới hạn vùng nhấn chỉ bao quanh text
+                        .clickable {
+                            isClicked = !isClicked // Thay đổi trạng thái khi nhấn
+                            navController.navigate("Login")
+                        },
                     text = buildAnnotatedString {
                         withStyle(
                             style = SpanStyle(
@@ -143,11 +154,11 @@ fun RegisterScreen(navController: NavController) {
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = FontFamily(Font(R.font.nunito_bold))
                             )
+
                         ) {
                             append("Đăng Nhập")
                         }
                     },
-                    modifier = Modifier.clickable { navController.popBackStack() }
                 )
             }
         }
