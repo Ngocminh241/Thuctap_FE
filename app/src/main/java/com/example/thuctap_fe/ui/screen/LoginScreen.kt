@@ -18,6 +18,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -74,14 +76,19 @@ fun LoginScreen(navController: NavController) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
-        IconButton(onClick = {
-            navController?.popBackStack()
-        },
-            modifier = Modifier.offset(10.dp,25.dp)
+        IconButton(
+            onClick = {
+                navController.navigate(Screen.Welcome.route)
+            },
+            modifier = Modifier.offset(10.dp, 25.dp)
         )
         {
-            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "", tint = Color.White,
-                modifier = Modifier.size(50.dp))
+            Icon(
+                imageVector = Icons.Rounded.Home,
+                contentDescription = "",
+                tint = Color.White,
+                modifier = Modifier.size(50.dp)
+            )
         }
 
         Column(
@@ -91,9 +98,6 @@ fun LoginScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-
-
 
 
             // Column chứa các trường nhập liệu và nút đăng nhập
@@ -120,7 +124,8 @@ fun LoginScreen(navController: NavController) {
                     value = username,
                     onValueChange = { username = it },
                     shape = RoundedCornerShape(25.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(bottom = 10.dp),
                     placeholder = { Text(text = "Nhập Email của bạn") },
                     colors = TextFieldDefaults.colors(
@@ -136,7 +141,9 @@ fun LoginScreen(navController: NavController) {
                     value = password,
                     onValueChange = { password = it },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 10.dp),
                     placeholder = { Text(text = "Nhập Mật Khẩu") },
                     shape = RoundedCornerShape(25.dp),
                     colors = TextFieldDefaults.colors(
@@ -234,7 +241,9 @@ fun CustomTextField(placeholderText: String) {
         value = username,
         onValueChange = { username = it },
         shape = RoundedCornerShape(25.dp),
-        modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 20.dp),
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.White,
             unfocusedContainerColor = Color.White,
@@ -262,7 +271,9 @@ fun PasswordTextField(placeholderText: String) {
         onValueChange = { password = it },
         singleLine = true,
         shape = RoundedCornerShape(25.dp),
-        modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 20.dp),
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.White,
