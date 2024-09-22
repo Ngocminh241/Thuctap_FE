@@ -22,7 +22,11 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -103,6 +107,28 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
     var showDialog by remember { mutableStateOf(false) }
 
     var editingAnswer by remember { mutableStateOf(0) }
+
+    data class Quiz(
+        val question: String,
+        val answer1: String,
+        val answer2: String,
+        val answer3: String,
+        val answer4: String,
+        val correctAnswer: Int,
+        val image: Uri
+    )
+
+    var quizList by remember {
+        mutableStateOf(
+            listOf<Quiz>(
+                Quiz("Câu hỏi 1", "Đáp án 1", "Đáp án 2", "Đáp án 3", "Đáp án 4", 1, Uri.EMPTY),
+                Quiz("Câu hỏi 2", "Đáp án 1", "Đáp án 2", "Đáp án 3", "Đáp án 4", 2, Uri.EMPTY),
+                Quiz("Câu hỏi 3", "Đáp án 1", "Đáp án 2", "Đáp án 3", "Đáp án 4", 3, Uri.EMPTY),
+                Quiz("Câu hỏi 4", "Đáp án 1", "Đáp án 2", "Đáp án 3", "Đáp án 4", 4, Uri.EMPTY),
+                Quiz("Câu hỏi 5", "Đáp án 1", "Đáp án 2", "Đáp án 3", "Đáp án 4", 1, Uri.EMPTY),
+            )
+        )
+    }
 
 
     //danh sách màu nền đáp án
@@ -345,7 +371,7 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                 }
                 IconButton(
                     onClick = {
-                        if(question.isEmpty()){
+                        if (question.isEmpty()) {
                             Toast.makeText(context, "Chưa nhập câu hỏi", Toast.LENGTH_SHORT).show()
                         }
 
@@ -354,8 +380,21 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                         }
 
                         if (!status1 && !status2 && !status3 && !status4) {
-                            Toast.makeText(context, "Chưa chọn đáp án đúng", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Chưa chọn đáp án đúng", Toast.LENGTH_SHORT)
+                                .show()
                         }
+
+                        quizList = quizList + Quiz(
+                            question,
+                            answer1,
+                            answer2,
+                            answer3,
+                            answer4,
+                            correctAnswer = if (status1) 1 else if (status2) 2 else if (status3) 3 else 4,
+                            imageUri ?: Uri.EMPTY
+                        )
+
+
 
                         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show()
                     },
@@ -367,6 +406,36 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                         .align(Alignment.BottomEnd)
                 ) {
                     Icon(Icons.Default.Add, contentDescription = "", tint = Color.White)
+                }
+
+                LazyRow(
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .width(300.dp)
+                ) {
+                    itemsIndexed(quizList) { index, item ->
+                        Card(
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(80.dp)
+                        ) {
+                            Box {
+                                Image(
+                                    painter = rememberAsyncImagePainter(item.image),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(60.dp),
+                                )
+                                Spacer(modifier = Modifier.height(10.dp))
+                                Text(
+                                    text = "${index + 1}",
+                                    fontSize = 15.sp,
+                                    color = Color.Red,
+                                    fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                                )
+                            }
+                        }
+                    }
                 }
             }
         })
@@ -418,9 +487,6 @@ fun AddDialog(
     trangThai: Boolean = false
 ) {
 
-    var status by remember { mutableStateOf(false) }
-    var nameCheck by remember { mutableStateOf(false) }
-
     Dialog(onDismissRequest = onDismiss) {
         Card(
             colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -439,15 +505,6 @@ fun AddDialog(
                         onValueChange = onValueChange,
                         label = { Text("Đáp án") },
                         placeholder = { Text("Nhập đáp án") },
-                        isError = nameCheck,
-                        supportingText = {
-                            if (nameCheck) {
-                                Text(
-                                    "Không được để trống",
-                                    color = Color.Red
-                                )
-                            }
-                        }
                     )
 
                     Spacer(modifier = Modifier.padding(8.dp))
