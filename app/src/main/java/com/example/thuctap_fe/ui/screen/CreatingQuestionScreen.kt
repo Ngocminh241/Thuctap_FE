@@ -3,6 +3,7 @@ package com.example.thuctap_fe.ui.screen
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -63,7 +64,6 @@ import androidx.compose.ui.window.Dialog
 import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.example.thuctap_fe.R
 
 
@@ -345,7 +345,19 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                 }
                 IconButton(
                     onClick = {
-                        showDialog = true
+                        if(question.isEmpty()){
+                            Toast.makeText(context, "Chưa nhập câu hỏi", Toast.LENGTH_SHORT).show()
+                        }
+
+                        if (answer1.isEmpty() || answer2.isEmpty() || answer3.isEmpty() || answer4.isEmpty()) {
+                            Toast.makeText(context, "Nhập thiếu đáp án", Toast.LENGTH_SHORT).show()
+                        }
+
+                        if (!status1 && !status2 && !status3 && !status4) {
+                            Toast.makeText(context, "Chưa chọn đáp án đúng", Toast.LENGTH_SHORT).show()
+                        }
+
+                        Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show()
                     },
                     modifier = Modifier
                         .background(
