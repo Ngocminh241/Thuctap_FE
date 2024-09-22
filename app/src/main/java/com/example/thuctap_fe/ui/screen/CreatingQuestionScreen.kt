@@ -3,6 +3,7 @@ package com.example.thuctap_fe.ui.screen
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,13 +26,14 @@ import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -166,6 +168,29 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                 }) {
                     Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "")
                 }
+                Button(
+                    onClick = {},
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                    modifier = Modifier
+                        .height(50.dp)
+                        .background(
+                            brush = Brush.horizontalGradient(
+                                listOf(Color("#b56fff".toColorInt()), Color("#8954c0".toColorInt()))
+                            ),
+                            shape = RoundedCornerShape(10.dp)
+                        )
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Done,
+                        contentDescription = null,
+                    )
+                    Text(
+                        text = "Hoàn thành",
+                        color = Color.White,
+                        fontSize = 15.sp,
+                        fontFamily = FontFamily(Font(R.font.nunito_bold))
+                    )
+                }
             }
         },
         content = { paddingValues ->
@@ -245,7 +270,7 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                         } else {
                             Column(
                                 modifier = Modifier
-                                    .background(Color.Red)
+                                    .background(Color.LightGray)
                                     .padding(20.dp),
                                 verticalArrangement = Arrangement.Center,
                                 horizontalAlignment = Alignment.CenterHorizontally
@@ -411,13 +436,13 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                 LazyRow(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
-                        .width(300.dp)
+                        .width(320.dp)
                 ) {
                     itemsIndexed(quizList) { index, item ->
                         Card(
                             modifier = Modifier
-                                .padding(10.dp)
-                                .size(80.dp)
+                                .padding(horizontal = 10.dp)
+                                .size(50.dp)
                         ) {
                             Box {
                                 Image(
