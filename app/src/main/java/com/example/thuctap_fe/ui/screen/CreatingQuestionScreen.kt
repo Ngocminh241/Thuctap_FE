@@ -1,5 +1,10 @@
 package com.example.thuctap_fe.ui.screen
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -43,6 +48,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
@@ -56,6 +62,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import com.example.thuctap_fe.R
 
 
@@ -104,6 +112,17 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
         listOf(Color("#D4B55F".toColorInt()), Color("#D3A114".toColorInt())),
         listOf(Color("#5E994A".toColorInt()), Color("#359215".toColorInt())),
     )
+
+    val context = LocalContext.current
+    var imageUri by remember { mutableStateOf<Uri?>(null) }
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            imageUri = result.data?.data
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -183,23 +202,33 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                     }
 
                     Card(
-                        onClick = {},
-                        modifier = Modifier
-                            .padding(20.dp)
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_PICK).apply {
+                                type = "image/*"
+                            }
+                            launcher.launch(intent)
+                        },
+                        modifier = Modifier.padding(20.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .background(Color.Red)
-                                .padding(20.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Icon(Icons.Default.Add, contentDescription = "", tint = Color.White)
-                            Text("Thêm ảnh", color = Color.White, fontWeight = FontWeight.Bold)
+                        if (imageUri != null) {
+                            Image(
+                                painter = rememberAsyncImagePainter(imageUri),
+                                contentDescription = null,
+                                modifier = Modifier.size(width = 400.dp, height = 200.dp),
+                            )
+                        } else {
+                            Column(
+                                modifier = Modifier
+                                    .background(Color.Red)
+                                    .padding(20.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Icon(Icons.Default.Add, contentDescription = "", tint = Color.White)
+                                Text("Thêm ảnh", color = Color.White, fontWeight = FontWeight.Bold)
+                            }
                         }
                     }
-
-                    Spacer(modifier = Modifier.height(20.dp))
 
                     TextField(
                         value = question,
@@ -242,7 +271,7 @@ fun CreatingQuestionScreen(navController: NavController? = null) {
                             .padding(top = 10.dp)
                     )
 
-                    Spacer(modifier = Modifier.height(40.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
 
                     Box {
                         Answer(answer1, {
