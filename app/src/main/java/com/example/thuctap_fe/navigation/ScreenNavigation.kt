@@ -19,7 +19,7 @@ fun ScreenNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.Subject.route,
+        startDestination = Screen.ChangePassword.route,
     ) {
         composable(Screen.Welcome.route) { WelcomeScreen(navController) }
         composable(Screen.Main.route) { MainScreen(navController) }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -26,11 +27,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -206,7 +209,8 @@ fun PasswordInputField(
     passwordVisible: Boolean,
     onVisibilityChange: () -> Unit
 ) {
-    val paddingStart = 16.dp // Padding start value for both placeholder and text input
+    val paddingStart = 16.dp
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column {
         TextField(
@@ -221,7 +225,7 @@ fun PasswordInputField(
                         listOf(Color("#FDC890".toColorInt()), Color("#FF9382".toColorInt()))
                     )
                 )
-                .padding(start = paddingStart), // Add padding to TextField
+                .padding(start = paddingStart),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
@@ -234,7 +238,15 @@ fun PasswordInputField(
                 fontFamily = FontFamily(Font(R.font.nunito_bold))
             ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Password,
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide() // Ẩn bàn phím khi nhấn "Done"
+                }
+            ),
             trailingIcon = {
                 val image = if (passwordVisible) painterResource(id = R.drawable.hide) else painterResource(id = R.drawable.view)
                 IconButton(onClick = onVisibilityChange) {
@@ -248,7 +260,9 @@ fun PasswordInputField(
                     fontSize = 20.sp,
                     fontFamily = FontFamily(Font(R.font.nunito_bold)),
                 )
-            }
+            },
+            singleLine = true,
+            maxLines = 1
         )
     }
 }
