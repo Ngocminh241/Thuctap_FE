@@ -7,4 +7,10 @@ enum class Screen(val route: String) {
     Option("Option"),
     Profile("Profile"),
     Subject("Subject"),
+    Play("Play"),
+    Register("Register"),
+    Login("Login"),
+    ChangePassword("ChangePassword"),
+
+
 }
