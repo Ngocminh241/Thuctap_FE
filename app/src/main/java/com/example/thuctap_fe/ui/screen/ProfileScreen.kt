@@ -145,13 +145,13 @@ fun ProfileScreen(navController: NavController? = null) {
                         )
                     },
                     modifier = Modifier
-                        .border(
-                            width = 5.dp,
-                            shape = RoundedCornerShape(35.dp),
-                            brush = Brush.horizontalGradient(
-                                listOf(Color("#FDC890".toColorInt()), Color("#FF9382".toColorInt()))
-                            )
-                        ),
+                            .border(
+                                width = 5.dp,
+                                shape = RoundedCornerShape(35.dp),
+                                brush = Brush.horizontalGradient(
+                                    listOf(Color("#FDC890".toColorInt()), Color("#FF9382".toColorInt()))
+                                )
+                            ),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
@@ -182,7 +182,7 @@ fun ProfileScreen(navController: NavController? = null) {
                         )
                 ) {
                     Text(
-                        text = "Lưu",
+                        text = "fvdv d",
                         color = Color.White,
                         fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.nunito_bold))
