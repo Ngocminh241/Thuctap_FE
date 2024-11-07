@@ -7,4 +7,5 @@ enum class Screen(val route: String) {
     Option("Option"),
     Profile("Profile"),
     Subject("Subject"),
+    CreateQuestionScreen("CreateQuestionScreen")
 }
