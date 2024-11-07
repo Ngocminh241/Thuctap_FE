@@ -134,7 +134,7 @@ fun manHinhChao(navController: NavController? = null) {
                         )
                 ) {
                     Text(
-                        text = "Bắt đầu",
+                        text = "BẮT ĐẦU",
                         color = Color.White,
                         fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.nunito_bold))
@@ -156,7 +156,7 @@ fun manHinhChao(navController: NavController? = null) {
 
                     TextButton(
                         onClick = {
-                            // Handle Đăng ký click
+                            navController?.navigate(Screen.Register.route)
 
                         },
                         modifier = Modifier.padding(end = 4.dp)// Reduce padding between buttons
@@ -165,12 +165,13 @@ fun manHinhChao(navController: NavController? = null) {
                             text = "Đăng ký",
                             fontSize = 20.sp,
                             color = Color.White, // Customize the color
-                            fontFamily = FontFamily(Font(R.font.nunito_variable_fontwght))
+                            fontFamily = FontFamily(Font(R.font.nunito_bold))
                         )
                     }
                     TextButton(
                         onClick = {
-                            // Handle Đăng nhập click
+                                navController?.navigate(Screen.Login.route)
+
                         },
                                 modifier = Modifier.padding(start = 4.dp)
                     ) {
@@ -178,7 +179,7 @@ fun manHinhChao(navController: NavController? = null) {
                             text = "Đăng nhập",
                             fontSize = 20.sp,
                             color = Color.White, // Customize the color
-                            fontFamily = FontFamily(Font(R.font.nunito_variable_fontwght))
+                            fontFamily = FontFamily(Font(R.font.nunito_bold))
                         )
                     }
                 }
