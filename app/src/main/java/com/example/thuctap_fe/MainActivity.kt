@@ -24,8 +24,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            ScreenNavigation()
-            CreatingQuestionScreen()
+            ScreenNavigation()
+//            CreatingQuestionScreen()
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
