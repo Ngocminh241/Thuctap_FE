@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -70,14 +71,19 @@ fun RegisterScreen(navController: NavController) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
-        IconButton(onClick = {
-            navController?.popBackStack()
-        },
-            modifier = Modifier.offset(10.dp,25.dp)
+        IconButton(
+            onClick = {
+                navController.navigate(Screen.Welcome.route)
+            },
+            modifier = Modifier.offset(10.dp, 25.dp)
         )
         {
-            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "", tint = Color.White,
-                modifier = Modifier.size(50.dp))
+            Icon(
+                imageVector = Icons.Rounded.Home,
+                contentDescription = "",
+                tint = Color.White,
+                modifier = Modifier.size(50.dp)
+            )
         }
 
         // Foreground content
@@ -164,6 +170,7 @@ fun RegisterScreen(navController: NavController) {
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewRegisterScreen() {
