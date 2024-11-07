@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import com.example.thuctap_fe.R
+import com.example.thuctap_fe.navigation.Screen
 
 @Composable
 fun CreateQuestionScreen(navController: NavController? = null) {
@@ -134,7 +135,9 @@ fun CreateQuestionScreen(navController: NavController? = null) {
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Button(
-                    onClick = {},
+                    onClick = {
+                        navController?.navigate(Screen.CreatingQuestion.route)
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Transparent // Set container color to transparent
                     ),

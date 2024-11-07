@@ -160,7 +160,9 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
                     }
                 }
                 IconButton(
-                    onClick = {},
+                    onClick = {
+                        navCtrl.navigate(Screen.CreateQuestion.route)
+                    },
                     modifier = Modifier
                         .offset(y = (-60).dp)
                         .background(
@@ -189,7 +191,7 @@ fun MainScreen(navCtrl: NavController = rememberNavController()) {
                 Home(navCtrl)
             }
             composable(Screen.Option.route) {
-                OptionScreen()
+                OptionScreen(navCtrl)
             }
         }
     }
