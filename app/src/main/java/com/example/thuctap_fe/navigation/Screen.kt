@@ -11,6 +11,6 @@ enum class Screen(val route: String) {
     Register("Register"),
     Login("Login"),
     ChangePassword("ChangePassword"),
-
+    CreateQuestion("CreateQuestionScreen")
 
 }

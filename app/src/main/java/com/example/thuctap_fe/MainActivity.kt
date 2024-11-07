@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.thuctap_fe.navigation.ScreenNavigation
+import com.example.thuctap_fe.ui.screen.CreatingQuestionScreen
 import com.example.thuctap_fe.ui.theme.Thuctap_FETheme
 
 class MainActivity : ComponentActivity() {
@@ -24,9 +25,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ScreenNavigation()
+//            CreatingQuestionScreen()
         }
 
-//        window.statusBarColor = Color.Gray.toArgb() // Replace with your desired color
         WindowCompat.setDecorFitsSystemWindows(window, false)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
